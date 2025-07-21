@@ -1,0 +1,748 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sikelela Sompali - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+        
+        * {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            color: #ffffff;
+        }
+        
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(26,26,26,0.9));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="code" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><text x="10" y="20" font-family="monospace" font-size="8" fill="%23333">console.log</text><text x="10" y="40" font-family="monospace" font-size="8" fill="%23333">import pandas</text><text x="10" y="60" font-family="monospace" font-size="8" fill="%23333">SELECT *</text><text x="10" y="80" font-family="monospace" font-size="8" fill="%23333">&lt;div&gt;</text></pattern></defs><rect width="100%" height="100%" fill="url(%23code)"/></svg>') repeat;
+            opacity: 0.1;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(-20px) translateX(10px); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .skill-card {
+            transition: all 0.3s ease;
+            border: 1px solid #333;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: #666;
+            box-shadow: 0 10px 25px rgba(255,255,255,0.1);
+        }
+        
+        .project-card {
+            transition: all 0.3s ease;
+            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+            border: 1px solid #333;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: #666;
+            box-shadow: 0 20px 40px rgba(255,255,255,0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #333, #555);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #555, #777);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #333, transparent);
+            margin: 4rem 0;
+        }
+        
+        #scrollToTop {
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #333, #555);
+        }
+        
+        #scrollToTop:hover {
+            background: linear-gradient(135deg, #555, #777);
+            transform: scale(1.1);
+        }
+        
+        .case-study-bg {
+            background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
+        }
+        
+        .contact-form input, .contact-form textarea {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: #666;
+            background: rgba(255,255,255,0.1);
+            outline: none;
+        }
+        
+        .cert-card {
+            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+        
+        .cert-card:hover {
+            border-color: #666;
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-black bg-opacity-90 backdrop-blur-sm border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-xl font-bold heading-font">Sikelela Sompali</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="hover:text-gray-300 transition-colors">Home</a>
+                    <a href="#about" class="hover:text-gray-300 transition-colors">About</a>
+                    <a href="#skills" class="hover:text-gray-300 transition-colors">Skills</a>
+                    <a href="#projects" class="hover:text-gray-300 transition-colors">Projects</a>
+                    <a href="#contact" class="hover:text-gray-300 transition-colors">Contact</a>
+                </div>
+                <button id="mobileMenuBtn" class="md:hidden">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="fixed top-16 left-0 w-full bg-black bg-opacity-95 z-40 hidden">
+        <div class="flex flex-col space-y-4 p-6">
+            <a href="#home" class="hover:text-gray-300 transition-colors">Home</a>
+            <a href="#about" class="hover:text-gray-300 transition-colors">About</a>
+            <a href="#skills" class="hover:text-gray-300 transition-colors">Skills</a>
+            <a href="#projects" class="hover:text-gray-300 transition-colors">Projects</a>
+            <a href="#contact" class="hover:text-gray-300 transition-colors">Contact</a>
+        </div>
+    </div>
+
+    <!-- 1. Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center">
+        <!-- ADD BACKGROUND VIDEO HERE: Replace with your looping background video -->
+        <!-- <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover opacity-20">
+            <source src="your-background-video.mp4" type="video/mp4">
+        </video> -->
+        
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="animate-fade-in">
+                <!-- ADD YOUR PROFILE IMAGE HERE -->
+                <img src="images/Profile.jpg" alt="Sikelela Sompali" class="w-48 h-48 rounded-full mx-auto mb-8 border-4 border-gray-600 shadow-2xl">
+                <!-- Replace the placeholder above with: <img src="path-to-your-photo.jpg" alt="Sikelela Sompali" class="w-48 h-48 rounded-full mx-auto mb-8 border-4 border-gray-600 shadow-2xl"> -->
+                
+                <h1 class="text-5xl md:text-7xl font-bold heading-font mb-4">
+                    Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-white">Sikelela Sompali</span>
+                </h1>
+                <h2 class="text-xl md:text-2xl mb-6 text-gray-300">
+                    Where Front-End Development Meets Data Analysis
+                </h2>
+                <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
+                    Transforming complex data into meaningful insights and beautiful, functional web experiences.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#projects" class="btn-primary px-8 py-3 rounded-lg font-semibold inline-flex items-center justify-center">
+                        <i class="fas fa-eye mr-2"></i> View My Work
+                    </a>
+                    <!-- ADD YOUR CV LINK HERE -->
+                    <a href="Certificates/CV.pdf" download class="btn-primary px-8 py-3 rounded-lg font-semibold inline-flex items-center justify-center">
+                        <i class="fas fa-download mr-2"></i> Download CV
+                    </a>
+                    <!-- Replace "your-cv.pdf" above with the actual path to your CV -->
+                    
+                    <a href="#contact" class="btn-primary px-8 py-3 rounded-lg font-semibold inline-flex items-center justify-center">
+                        <i class="fas fa-envelope mr-2"></i> Contact Me
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. About Me Section -->
+    <section id="about" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="animate-fade-in">
+                    <h2 class="text-4xl font-bold heading-font mb-6">About Me</h2>
+                    <p class="text-lg text-gray-300 mb-6">
+                        I'm a passionate student who thrives at the intersection of technology and data. Currently pursuing my studies while diving deep into the worlds of front-end development and data analysis, I believe in the power of visual storytelling through code and data.
+                    </p>
+                    <p class="text-lg text-gray-300 mb-6">
+                        As a visual thinker, I excel at structuring and simplifying complex data, transforming it into clear, actionable insights. My approach combines technical precision with creative problem-solving, making data accessible and beautiful.
+                    </p>
+                    <blockquote class="border-l-4 border-gray-600 pl-4 italic text-gray-400">
+                        "The best data stories are those that not only inform but inspire action."
+                    </blockquote>
+                </div>
+                <div class="text-center">
+                    <!-- ADD YOUR SECONDARY IMAGE HERE -->
+                    <img src="images/SecProfile.jpg" alt="Sikelela at work" class="rounded-lg shadow-2xl mx-auto">
+                    <!-- Replace the placeholder above with: <img src="path-to-your-about-photo.jpg" alt="Sikelela at work" class="rounded-lg shadow-2xl mx-auto"> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- 3. Skills Section -->
+    <section id="skills" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold heading-font text-center mb-12">Skills & Expertise</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Languages -->
+                <div class="skill-card bg-gray-900 p-6 rounded-lg">
+                    <div class="text-3xl mb-4 text-center">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-center">Languages</h3>
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span>Python</span>
+                            <div class="w-16 h-2 bg-gray-700 rounded"><div class="w-14 h-2 bg-white rounded"></div></div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span>R</span>
+                            <div class="w-16 h-2 bg-gray-700 rounded"><div class="w-12 h-2 bg-white rounded"></div></div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span>JavaScript</span>
+                            <div class="w-16 h-2 bg-gray-700 rounded"><div class="w-13 h-2 bg-white rounded"></div></div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span>C++</span>
+                            <div class="w-16 h-2 bg-gray-700 rounded"><div class="w-10 h-2 bg-white rounded"></div></div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span>HTML/CSS</span>
+                            <div class="w-16 h-2 bg-gray-700 rounded"><div class="w-15 h-2 bg-white rounded"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tools & Libraries -->
+                <div class="skill-card bg-gray-900 p-6 rounded-lg">
+                    <div class="text-3xl mb-4 text-center">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-center">Tools & Libraries</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i class="fas fa-chart-bar mr-2 text-sm"></i> Power BI</li>
+                        <li class="flex items-center"><i class="fas fa-python mr-2 text-sm"></i> Pandas</li>
+                        <li class="flex items-center"><i class="fas fa-calculator mr-2 text-sm"></i> NumPy</li>
+                        <li class="flex items-center"><i class="fas fa-chart-line mr-2 text-sm"></i> Matplotlib</li>
+                        <li class="flex items-center"><i class="fab fa-react mr-2 text-sm"></i> React</li>
+                        <li class="flex items-center"><i class="fas fa-stream mr-2 text-sm"></i> Streamlit</li>
+                        <li class="flex items-center"><i class="fab fa-git-alt mr-2 text-sm"></i> Git</li>
+                    </ul>
+                </div>
+
+                <!-- Techniques -->
+                <div class="skill-card bg-gray-900 p-6 rounded-lg">
+                    <div class="text-3xl mb-4 text-center">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-center">Techniques</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i class="fas fa-database mr-2 text-sm"></i> Data Wrangling</li>
+                        <li class="flex items-center"><i class="fas fa-chart-pie mr-2 text-sm"></i> Data Visualization</li>
+                        <li class="flex items-center"><i class="fas fa-robot mr-2 text-sm"></i> Machine Learning</li>
+                        <li class="flex items-center"><i class="fas fa-palette mr-2 text-sm"></i> UI/UX Design</li>
+                        <li class="flex items-center"><i class="fas fa-mobile-alt mr-2 text-sm"></i> Responsive Design</li>
+                        <li class="flex items-center"><i class="fas fa-search mr-2 text-sm"></i> Statistical Analysis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- 4. Projects Section -->
+    <section id="projects" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold heading-font text-center mb-12">Featured Projects</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card rounded-lg overflow-hidden">
+                    <!-- ADD PROJECT THUMBNAIL HERE -->
+                    <img src="images/PowerBI.png" alt="Project 1" class="w-full h-48 object-cover">
+                    <!-- Replace with: <img src="path-to-project1-image.jpg" alt="Project 1" class="w-full h-48 object-cover"> -->
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3">Sales Dashboard Analytics</h3>
+                        <p class="text-gray-400 mb-4">Interactive Power BI dashboard analyzing sales trends and customer behavior, resulting in 25% improvement in decision-making speed.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-700 px-2 py-1 rounded text-sm">Power BI</span>
+                            <span class="bg-gray-700 px-2 py-1 rounded text-sm">Python</span>
+                            <span class="bg-gray-700 px-2 py-1 rounded text-sm">SQL</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <!-- ADD YOUR PROJECT LINKS HERE -->
+                            <a href="your-live-demo-link" class="text-sm hover:text-gray-300 transition-colors">
+                                <i class="fas fa-external-link-alt mr-1"></i> Live Demo
+                            </a>
+                            <a href="your-github-link" class="text-sm hover:text-gray-300 transition-colors">
+                                <i class="fab fa-github mr-1"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card rounded-lg overflow-hidden">
+                    <!-- ADD PROJECT THUMBNAIL HERE -->
+                    <img src="images/Portfolio.png" alt="Project 2" class="w-full h-48 object-cover">
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3">React Portfolio Website</h3>
+                        <p class="text-gray-400 mb-4">Modern, responsive portfolio website built with React and Tailwind CSS, featuring smooth animations and mobile-first design.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-700 px-2 py-1 rounded text-sm">React</span>
+                            <span class="bg-gray-700 px-2 py-1 rounded text-sm">Tailwind</span>
+                            <span class="bg-gray-700 px-2 py-1 rounded text-sm">JavaScript</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="your-live-demo-link" class="text-sm hover:text-gray-300 transition-colors">
+                                <i class="fas fa-external-link-alt mr-1"></i> Live Demo
+                            </a>
+                            <a href="your-github-link" class="text-sm hover:text-gray-300 transition-colors">
+                                <i class="fab fa-github mr-1"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card rounded-lg overflow-hidden">
+                    <!-- ADD PROJECT THUMBNAIL HERE -->
+                    <img src="images/MachineL.png" alt="Project 3" class="w-full h-48 object-cover">
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3">Machine Learning Predictor</h3>
+                        <p class="text-gray-400 mb-4">Streamlit app using machine learning to predict housing prices with 89% accuracy, featuring interactive visualizations.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-700 px-2 py-1 rounded text-sm">Python</span>
+                            <span class="bg-gray-700 px-2 py-1 rounded text-sm">Streamlit</span>
+                            <span class="bg-gray-700 px-2 py-1 rounded text-sm">Scikit-learn</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="your-live-demo-link" class="text-sm hover:text-gray-300 transition-colors">
+                                <i class="fas fa-external-link-alt mr-1"></i> Live Demo
+                            </a>
+                            <a href="your-github-link" class="text-sm hover:text-gray-300 transition-colors">
+                                <i class="fab fa-github mr-1"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card rounded-lg overflow-hidden">
+                    <!-- ADD PROJECT THUMBNAIL HERE -->
+                    <img src="images/Covid-19.png" alt="Project 4" class="w-full h-48 object-cover">
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3">COVID-19 Data Tracker</h3>
+                        <p class="text-gray-400 mb-4">Interactive dashboard tracking COVID-19 statistics with real-time data visualization and trend analysis.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-700 px-2 py-1 rounded text-sm">Python</span>
+                            <span class="bg-gray-700 px-2 py-1 rounded text-sm">Pandas</span>
+                            <span class="bg-gray-700 px-2 py-1 rounded text-sm">Plotly</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="your-live-demo-link" class="text-sm hover:text-gray-300 transition-colors">
+                                <i class="fas fa-external-link-alt mr-1"></i> Live Demo
+                            </a>
+                            <a href="your-github-link" class="text-sm hover:text-gray-300 transition-colors">
+                                <i class="fab fa-github mr-1"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card rounded-lg overflow-hidden">
+                    <!-- ADD PROJECT THUMBNAIL HERE -->
+                    <img src="images/E-commerce.png" alt="Project 5" class="w-full h-48 object-cover">
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3">E-commerce Analytics</h3>
+                        <p class="text-gray-400 mb-4">Comprehensive analysis of e-commerce data revealing customer insights and optimization opportunities.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-700 px-2 py-1 rounded text-sm">R</span>
+                            <span class="bg-gray-700 px-2 py-1 rounded text-sm">ggplot2</span>
+                            <span class="bg-gray-700 px-2 py-1 rounded text-sm">Shiny</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="your-live-demo-link" class="text-sm hover:text-gray-300 transition-colors">
+                                <i class="fas fa-external-link-alt mr-1"></i> Live Demo
+                            </a>
+                            <a href="your-github-link" class="text-sm hover:text-gray-300 transition-colors">
+                                <i class="fab fa-github mr-1"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card rounded-lg overflow-hidden">
+                    <!-- ADD PROJECT THUMBNAIL HERE -->
+                    <img src="images/Weather.png" alt="Project 6" class="w-full h-48 object-cover">
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3">Weather Data Visualization</h3>
+                        <p class="text-gray-400 mb-4">Beautiful, interactive weather data visualizations showing climate patterns and temperature trends over time.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-700 px-2 py-1 rounded text-sm">JavaScript</span>
+                            <span class="bg-gray-700 px-2 py-1 rounded text-sm">D3.js</span>
+                            <span class="bg-gray-700 px-2 py-1 rounded text-sm">HTML/CSS</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="your-live-demo-link" class="text-sm hover:text-gray-300 transition-colors">
+                                <i class="fas fa-external-link-alt mr-1"></i> Live Demo
+                            </a>
+                            <a href="your-github-link" class="text-sm hover:text-gray-300 transition-colors">
+                                <i class="fab fa-github mr-1"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- 5. Case Study Section -->
+    <section class="py-20 case-study-bg">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold heading-font text-center mb-12">Featured Case Study</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12 items-center mb-12">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4">Customer Behavior Analytics Platform</h3>
+                        <p class="text-gray-300 mb-6">
+                            <strong>Problem:</strong> A retail company needed to understand customer purchasing patterns to optimize inventory and improve marketing strategies.
+                        </p>
+                        <p class="text-gray-300 mb-6">
+                            <strong>Goal:</strong> Create a comprehensive analytics platform that provides actionable insights into customer behavior and purchasing trends.
+                        </p>
+                    </div>
+                    <div>
+                        <!-- ADD CASE STUDY IMAGE HERE -->
+                        <img src="images/customer_analysis.png" alt="Case Study" class="rounded-lg shadow-xl">
+                        <!-- Replace with: <img src="path-to-case-study-image.jpg" alt="Case Study" class="rounded-lg shadow-xl"> -->
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <div class="bg-gray-900 p-6 rounded-lg">
+                        <h4 class="text-lg font-semibold mb-3">Process</h4>
+                        <ul class="text-gray-300 space-y-2">
+                            <li>• Data collection from multiple sources</li>
+                            <li>• Cleaning and preprocessing</li>
+                            <li>• Statistical analysis and modeling</li>
+                            <li>• Interactive dashboard development</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-900 p-6 rounded-lg">
+                        <h4 class="text-lg font-semibold mb-3">Outcome</h4>
+                        <ul class="text-gray-300 space-y-2">
+                            <li>• 30% increase in marketing ROI</li>
+                            <li>• Reduced inventory waste by 25%</li>
+                            <li>• Improved customer satisfaction</li>
+                            <li>• Real-time decision making</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-900 p-6 rounded-lg">
+                        <h4 class="text-lg font-semibold mb-3">Lessons Learned</h4>
+                        <ul class="text-gray-300 space-y-2">
+                                                        <li>• Importance of clean data</li>
+                            <li>• Value of interactive visualization</li>
+                            <li>• Need for stakeholder input</li>
+                            <li>• Iterative improvement process</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <a href="#" class="btn-primary px-8 py-3 rounded-lg font-semibold inline-flex items-center justify-center">
+                        <i class="fas fa-book-open mr-2"></i> View Full Case Study
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- 6. Certifications Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold heading-font text-center mb-12">Certifications</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Certification 1 -->
+                <div class="cert-card rounded-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-gray-800 p-3 rounded-lg mr-4">
+                            <i class="fas fa-certificate text-2xl text-yellow-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">Data Science Professional</h3>
+                            <p class="text-gray-400 text-sm">IBM - 2023</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">Comprehensive data science certification covering Python, machine learning, and data visualization techniques.</p>
+                    <a href="#" class="text-sm hover:text-gray-300 transition-colors">
+                        <i class="fas fa-external-link-alt mr-1"></i> View Credential
+                    </a>
+                </div>
+
+                <!-- Certification 2 -->
+                <div class="cert-card rounded-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-gray-800 p-3 rounded-lg mr-4">
+                            <i class="fas fa-certificate text-2xl text-yellow-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">Microsoft AI Fluency</h3>
+                            <p class="text-gray-400 text-sm">Microsoft- 2025</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">This credential validates the recipient's foundational understanding of Artificial Intelligence (AI) concepts and principles through Microsoft's AI Fluency Course.</p>
+                    <a href="Certificates/Sikelela - Certificate - MSAISkillsDev Course - 20250611053254.png" class="text-sm hover:text-gray-300 transition-colors">
+                        <i class="fas fa-external-link-alt mr-1"></i> View Credential
+                    </a>
+                </div>
+
+                <!-- Certification 3 -->
+                <div class="cert-card rounded-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-gray-800 p-3 rounded-lg mr-4">
+                            <i class="fas fa-certificate text-2xl text-yellow-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">Data Analyst Course</h3>
+                            <p class="text-gray-400 text-sm">Udemy - 2024</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">Specialized certification in data visualization and chart formation, using Matplotlib, Seaborn, Numpy and Pandas.</p>
+                    <a href="Certificates/Udemy_Certificate_Data Analysis.pdf" class="text-sm hover:text-gray-300 transition-colors">
+                        <i class="fas fa-external-link-alt mr-1"></i> View Credential
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- 7. Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold heading-font text-center mb-12">Get In Touch</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="animate-fade-in">
+                    <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
+                    <p class="text-gray-300 mb-8">
+                        Have a project in mind or want to discuss potential opportunities? Feel free to reach out - I'm always open to interesting collaborations and conversations.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-4 text-gray-400"></i>
+                            <div>
+                                <h4 class="font-semibold">Email</h4>
+                                <a href="mailto:sompalisikelela1@gmail.com" class="text-gray-400 hover:text-gray-300 transition-colors">sompalisikelela1@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-phone-alt mt-1 mr-4 text-gray-400"></i>
+                            <div>
+                                <h4 class="font-semibold">Phone</h4>
+                                <a href="tel:063 341 4584" class="text-gray-400 hover:text-gray-300 transition-colors">069 341 4584</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fab fa-linkedin mt-1 mr-4 text-gray-400"></i>
+                            <div>
+                                <h4 class="font-semibold">LinkedIn</h4>
+                                <a href="https://www.linkedin.com/in/sikelela-sompali-76616b26b/" target="_blank" class="text-gray-400 hover:text-gray-300 transition-colors">Sikelela Sompali</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fab fa-github mt-1 mr-4 text-gray-400"></i>
+                            <div>
+                                <h4 class="font-semibold">GitHub</h4>
+                                <a href="https://github.com/yourusername" target="_blank" class="text-gray-400 hover:text-gray-300 transition-colors">github.com/yourusername</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form animate-fade-in">
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block mb-2 text-sm font-medium">Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 rounded-lg focus:outline-none" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block mb-2 text-sm font-medium">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 rounded-lg focus:outline-none" required>
+                        </div>
+                        <div>
+                            <label for="subject" class="block mb-2 text-sm font-medium">Subject</label>
+                            <input type="text" id="subject" class="w-full px-4 py-3 rounded-lg focus:outline-none" required>
+                        </div>
+                        <div>
+                            <label for="message" class="block mb-2 text-sm font-medium">Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 rounded-lg focus:outline-none" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary w-full px-6 py-3 rounded-lg font-semibold">
+                            <i class="fas fa-paper-plane mr-2"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black bg-opacity-90 py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-xl font-bold heading-font mb-4 md:mb-0">Sikelela Sompali</div>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-gray-300 transition-colors"><i class="fab fa-twitter text-xl"></i></a>
+                    <a href="#" class="hover:text-gray-300 transition-colors"><i class="fab fa-linkedin-in text-xl"></i></a>
+                    <a href="#" class="hover:text-gray-300 transition-colors"><i class="fab fa-github text-xl"></i></a>
+                    <a href="#" class="hover:text-gray-300 transition-colors"><i class="fab fa-medium text-xl"></i></a>
+                </div>
+            </div>
+            <div class="mt-8 text-center md:text-left">
+                <p class="text-gray-500 text-sm">
+                    &copy; 2023 Sikelela Sompali. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="fixed bottom-8 right-8 w-12 h-12 rounded-full hidden items-center justify-center shadow-lg">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Scroll to top button
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.remove('hidden');
+                scrollToTopBtn.classList.add('flex');
+            } else {
+                scrollToTopBtn.classList.add('hidden');
+                scrollToTopBtn.classList.remove('flex');
+            }
+        });
+        
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for all links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form submission
+        const contactForm = document.querySelector('.contact-form form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Here you would typically send the form data to a server
+                alert('Thank you for your message! I will get back to you soon.');
+                contactForm.reset();
+            });
+        }
+    </script>
+</body>
+</html>
